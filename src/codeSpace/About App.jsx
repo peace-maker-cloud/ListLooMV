@@ -1,12 +1,10 @@
-import { Routes, Route, Link } from "react-router-dom";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export const AboutApp = () => {
+export const AboutApp = ({ setHome, setAction }) => {
   const carouselContent = [
     {
       title: "Mobile-First Task Management",
@@ -37,6 +35,9 @@ export const AboutApp = () => {
 
   return (
     <div className="h-full">
+      <div>
+        <h1>About the App...</h1>
+      </div>
       <div className=" bg-white h-[55%] overflow-y-auto m-1 p-2 hide-scrollbar scroll-smooth rounded-lg">
         <Slider {...settings}>
           {carouselContent.map((item, index) => (
@@ -50,13 +51,27 @@ export const AboutApp = () => {
       <div className="signlogin text-center mt-2">
         <h1>
           Would you like to <br />
-          <Link className="text-xl text-indigo-600 font-serif" to="/sign-login">
+          <Link
+            onClick={() => {
+              setAction("Sign Up");
+              setHome(false);
+            }}
+            className="text-xl text-indigo-600 font-serif"
+            to="/sign-login"
+          >
             Sign Up
           </Link>
           <br />
           or
           <br />
-          <Link className="text-xl text-indigo-600 font-serif" to="/sign-login">
+          <Link
+            onClick={() => {
+              setAction("Sign In");
+              setHome(false);
+            }}
+            className="text-xl text-indigo-600 font-serif"
+            to="/sign-login"
+          >
             Sign In
           </Link>
         </h1>

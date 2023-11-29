@@ -1,16 +1,16 @@
-import React from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
 import { Listwork } from "./workPage/listwork";
 import { Taskwork } from "./workPage/taskwork";
-import { Routes, Route } from "react-router-dom";
 
 export const Content = ({ userTask, fetchErr, isLoading, checks, deletes }) => {
   return (
     <div className="mx-auto flex flex-col justify-between">
-      {/* <div>
+      <div>
         <Routes>
           <Route path="/listwork" element={<Listwork />} />
           <Route
-            path="/taskwork"
+            path="*/taskwork"
             element={
               <Taskwork
                 userTask={userTask}
@@ -22,7 +22,7 @@ export const Content = ({ userTask, fetchErr, isLoading, checks, deletes }) => {
             }
           />
         </Routes>
-      </div> */}
+      </div>
     </div>
   );
 };

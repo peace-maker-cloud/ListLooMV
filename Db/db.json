@@ -1,3 +1,13 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": 1,
+      "username": "pm_2305",
+      "fullName": "Peace Maker",
+      "password": "Pm@2305.",
+      "status": "Signed In",
+      "lists": [],
+      "tasks": []
+    }
+  ]
 }

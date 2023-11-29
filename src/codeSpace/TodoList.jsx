@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import React from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
 import { AppUI } from "./App UI";
 import Apirequest from "./ApiRequest";
 import dayjs from "dayjs";
 export const Todolist = () => {
-  const API_URL = "https://lisloommv.onrender.com/users";
+  const API_URL = "http://localhost:2305/users";
 
   // App Introduction
 
@@ -22,7 +22,7 @@ export const Todolist = () => {
   // for loading process
   const [isLoading, setIsloading] = useState(true);
   // For Sign in and Sign out process
-  const [action, setAction] = useState("Sign In");
+  const [action, setAction] = useState("");
   // Logged in process
   const [logged, setLogged] = useState("Signed Out");
   // for Profile credentials
@@ -37,10 +37,13 @@ export const Todolist = () => {
 
   // for Profile visibility
   const [visible, setVisible] = useState(false);
-  const [go, setGo] = useState("");
+  const [go, setGo] = useState("Task");
 
   const [Cal, setCal] = useState("hidden");
 
+  // display parts
+
+  // console.log(logged);
   // Task values
 
   const [show, setShow] = useState("hidden");
@@ -71,6 +74,7 @@ export const Todolist = () => {
       setFirstLetter(parsedUser.fullName.charAt(0));
       setFullName(parsedUser.fullName);
       setUsername(parsedUser.username);
+      setHome(false);
     }
 
     fetchData();
@@ -100,6 +104,7 @@ export const Todolist = () => {
             setPassvalidate("");
             setCredentials("");
             window.location.reload();
+            setHome(false);
           } else {
             setCredentials(`${username} is already registered.`);
             setPassword("");
@@ -172,6 +177,7 @@ export const Todolist = () => {
           logUpt(matchedUser.id);
           setUsername(matchedUser.username);
           setCredentials("");
+          setHome(false);
 
           // Store user in session storage
           const userToStore = {

@@ -110,7 +110,7 @@ npx tailwindcss init -p
 npm install -g json-server cross-env
 npm install concurrently --save-dev
 npm install dayjs
-
+npx json-server -p 2305 -w Db/db.json
 
 
 

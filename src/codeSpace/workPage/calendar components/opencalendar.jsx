@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import React from "react";
 
 export const openCalendar = (
   month = dayjs().month(),
