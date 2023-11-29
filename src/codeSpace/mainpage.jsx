@@ -90,20 +90,15 @@ export const Mainpage = ({
         )}
       </div>
       <div className="content bg-slate-300 rounded min-h-[65%] overflow-y-auto p-2 hide-scrollbar scroll-smooth">
-        <Routes>
-          <Route
-            path="/content/*"
-            element={
-              <Content
-                userTask={userTask}
-                fetchErr={fetchErr}
-                isLoading={isLoading}
-                checks={checks}
-                deletes={deletes}
-              />
-            }
-          />
-        </Routes>
+        <Content
+          go={go}
+          setGo={setGo}
+          userTask={userTask}
+          fetchErr={fetchErr}
+          isLoading={isLoading}
+          checks={checks}
+          deletes={deletes}
+        />
       </div>
     </>
   );

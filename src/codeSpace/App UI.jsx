@@ -62,20 +62,7 @@ export const AppUI = ({
 }) => {
   // codeSpace
 
-  const navigate = useNavigate();
   const homeSign = useNavigate();
-
-  useEffect(() => {
-    if (go === "") {
-      if (go === "List") {
-        navigate("/listwork");
-      } else {
-        navigate("/taskwork");
-      }
-    } else {
-      navigate("/");
-    }
-  }, [go, navigate]);
 
   useEffect(() => {
     if (!home) {
