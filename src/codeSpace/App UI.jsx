@@ -1,7 +1,7 @@
 import { SignLogiIn } from "./signLogiIn";
 import { Content } from "./Content";
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchBar } from "./workPage/taskComponents/searchBar";
@@ -130,35 +130,28 @@ export const AppUI = ({
       <>
         {logged === "Signed Out" ? (
           <div className="bg-slate-300 md:rounded md:min-h-[80%] min-h-[90%] md:p-2 ">
-            <Routes>
-              <Route
-                path="/signlogin"
-                element={
-                  <SignLogiIn
-                    action={action}
-                    setAction={setAction}
-                    logged={logged}
-                    setLogged={setLogged}
-                    fullName={fullName}
-                    setFullName={setFullName}
-                    username={username}
-                    setUsername={setUsername}
-                    password={password}
-                    setPassword={setPassword}
-                    handleSubmit={handleSubmit}
-                    handleLogin={handleLogin}
-                    credentials={credentials}
-                    setCredentials={setCredentials}
-                    uservalidate={uservalidate}
-                    passvalidate={passvalidate}
-                    namevalidate={namevalidate}
-                    setUservalidate={setUservalidate}
-                    setPassvalidate={setPassvalidate}
-                    setNamevalidate={setNamevalidate}
-                  />
-                }
-              />
-            </Routes>
+            <SignLogiIn
+              action={action}
+              setAction={setAction}
+              logged={logged}
+              setLogged={setLogged}
+              fullName={fullName}
+              setFullName={setFullName}
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              handleSubmit={handleSubmit}
+              handleLogin={handleLogin}
+              credentials={credentials}
+              setCredentials={setCredentials}
+              uservalidate={uservalidate}
+              passvalidate={passvalidate}
+              namevalidate={namevalidate}
+              setUservalidate={setUservalidate}
+              setPassvalidate={setPassvalidate}
+              setNamevalidate={setNamevalidate}
+            />
           </div>
         ) : (
           <>
@@ -222,29 +215,22 @@ export const AppUI = ({
               )}
             </div>
             <div className="content bg-slate-300 rounded min-h-[65%] overflow-y-auto p-2 hide-scrollbar">
-              <Routes>
-                <Route
-                  path="/mainpage"
-                  element={
-                    <Content
-                      userTask={userTask.filter((item) =>
-                        item.work.toLowerCase().includes(search.toLowerCase())
-                      )}
-                      newitem={newitem}
-                      setNewitem={setNewitem}
-                      search={search}
-                      setSearch={setSearch}
-                      fetchErr={fetchErr}
-                      isLoading={isLoading}
-                      submitted={submitted}
-                      go={go}
-                      setGo={setGo}
-                      checks={checks}
-                      deletes={deletes}
-                    />
-                  }
-                />
-              </Routes>
+              <Content
+                userTask={userTask.filter((item) =>
+                  item.work.toLowerCase().includes(search.toLowerCase())
+                )}
+                newitem={newitem}
+                setNewitem={setNewitem}
+                search={search}
+                setSearch={setSearch}
+                fetchErr={fetchErr}
+                isLoading={isLoading}
+                submitted={submitted}
+                go={go}
+                setGo={setGo}
+                checks={checks}
+                deletes={deletes}
+              />
             </div>
           </>
         )}
