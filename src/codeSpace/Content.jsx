@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 export const Content = ({ userTask, fetchErr, isLoading, checks, deletes }) => {
   return (
     <div className="mx-auto flex flex-col justify-between">
-      <div>
+      {/* <div>
         <Routes>
           <Route path="/listwork" element={<Listwork />} />
           <Route
@@ -22,7 +22,7 @@ export const Content = ({ userTask, fetchErr, isLoading, checks, deletes }) => {
             }
           />
         </Routes>
-      </div>
+      </div> */}
     </div>
   );
 };

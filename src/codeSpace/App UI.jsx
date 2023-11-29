@@ -1,16 +1,19 @@
-import { SignLogiIn } from "./signLogiIn";
-import { Content } from "./Content";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { SignLogiIn } from "./signLogiIn";
+import { Content } from "./Content";
 import { SearchBar } from "./workPage/taskComponents/searchBar";
 import { Inputlist } from "./workPage/taskComponents/inputlist";
 import { Calendar } from "./workPage/calendar";
 import listloom from "../assets/Images/listloom logo.png";
 import login from "../assets/Images/login logo.png";
+import { AboutApp } from "./About App";
 
 export const AppUI = ({
+  home,
+  setHome,
   show,
   setShow,
   action,
@@ -33,6 +36,12 @@ export const AppUI = ({
   password,
   setPassword,
   greet,
+  visible,
+  setVisible,
+  go,
+  setGo,
+  Cal,
+  setCal,
   handleSubmit,
   handleLogin,
   handleLogout,
@@ -53,20 +62,29 @@ export const AppUI = ({
   setSelectDate,
 }) => {
   // codeSpace
-  // for Profile visibility
-  const [visible, setVisible] = useState(false);
-  const [go, setGo] = useState("Task");
 
-  const [Cal, setCal] = useState("hidden");
   const navigate = useNavigate();
+  const homeSign = useNavigate();
+
+  // useEffect(() => {
+  //   if (go === "") {
+  //     if (go === "List") {
+  //       navigate("/listwork");
+  //     } else {
+  //       navigate("/taskwork");
+  //     }
+  //   } else {
+  //     navigate("/");
+  //   }
+  // }, [go, navigate]);
 
   useEffect(() => {
-    if (go === "List") {
-      navigate("/listwork");
+    if (logged === "Signed Out") {
+      homeSign("sign-login");
     } else {
-      navigate("/taskwork");
+      homeSign("/");
     }
-  }, [go, navigate]);
+  }, [logged, homeSign]);
 
   return (
     <div className="heading md:mx-auto md:rounded-md bg-slate-400 md:p-3 p-1 md:w-3/5 outline-none h-screen flex flex-col justify-between">
@@ -78,7 +96,7 @@ export const AppUI = ({
             alt="listloom png"
           />
           <h1 className="greeting text-white md:text-xl md:font-bold font-semibold my-auto text-center">
-            {logged === "Signed Out" ? "HI," : `${greet} ${fullName}`}
+            {logged === "Signed Out" ? "HI" : `${greet} ${fullName}`}
           </h1>
           <div className="bg-white md:w-[10%] w-[15%]  rounded-full cursor-pointer">
             {logged === "Signed Out" ? (
@@ -127,114 +145,9 @@ export const AppUI = ({
       </div>
 
       {/* Be careful with Content div */}
-      <>
-        {logged === "Signed Out" ? (
-          <div className="bg-slate-300 md:rounded md:min-h-[80%] min-h-[90%] md:p-2 ">
-            <SignLogiIn
-              action={action}
-              setAction={setAction}
-              logged={logged}
-              setLogged={setLogged}
-              fullName={fullName}
-              setFullName={setFullName}
-              username={username}
-              setUsername={setUsername}
-              password={password}
-              setPassword={setPassword}
-              handleSubmit={handleSubmit}
-              handleLogin={handleLogin}
-              credentials={credentials}
-              setCredentials={setCredentials}
-              uservalidate={uservalidate}
-              passvalidate={passvalidate}
-              namevalidate={namevalidate}
-              setUservalidate={setUservalidate}
-              setPassvalidate={setPassvalidate}
-              setNamevalidate={setNamevalidate}
-            />
-          </div>
-        ) : (
-          <>
-            <div>
-              {go === "List" ? (
-                <div className=" list work flex"></div>
-              ) : (
-                <div className="flex md:flex-row flex-col justify-around gap-5 self-center">
-                  <div
-                    onClick={() => {
-                      setShow("");
-                    }}
-                    className="text-center md:mx-0 mx-auto mt-5 p-2 md:w-[20%] w-[80%] bg-cyan-700 text-white rounded-md cursor-pointer h-10"
-                  >
-                    <button>Add new Task</button>
-                  </div>
-                  <div
-                    className={`md:top-[15%] top-[10%] md:left-[20%] left-[5%] absolute md:w-[30%] w-[90%] md:h-[8%] h-[10%] p-2 bg-slate-200 mx-auto pt-7 rounded-md ${
-                      show === "hidden" ? "hidden" : ""
-                    }`}
-                  >
-                    <Inputlist
-                      newitem={newitem}
-                      setNewitem={setNewitem}
-                      submitted={submitted}
-                      show={show}
-                      setShow={setShow}
-                    />
-                  </div>
-                  <div className=" flex p-1 md:w-4/5 h-fit">
-                    <i
-                      onClick={() => {
-                        setCal("");
-                      }}
-                      className="uil uil-calendar-alt text-4xl md:mt-2 mt-2 md:pt-1 rounded-xl text-black text-center md:w-[6%] w-[10%] p-1 h-[20%] bg-white shadow-inner shadow-blue-700 transition-all"
-                    ></i>
-
-                    <SearchBar search={search} setSearch={setSearch} />
-                  </div>
-                  <div
-                    className={`absolute bg-white text-black md:top-[25%] top-[28%] md:left-[25%] p-4 md:w-[25%] h-fit md:h-fit w-[60%] rounded-lg pt-8 transition-all ${
-                      Cal === "hidden" ? "hidden" : ""
-                    } `}
-                  >
-                    <i
-                      onClick={() => setCal("hidden")}
-                      className="uil uil-times text-3xl absolute md:left-[90%] left-[85%] bottom-[88%] transition-all cursor-pointer"
-                    ></i>
-                    <div>
-                      <Calendar
-                        currentMonth={currentMonth}
-                        today={today}
-                        setToday={setToday}
-                        selectDate={selectDate}
-                        setSelectDate={setSelectDate}
-                        setCal={setCal}
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="content bg-slate-300 rounded min-h-[65%] overflow-y-auto p-2 hide-scrollbar">
-              <Content
-                userTask={userTask.filter((item) =>
-                  item.work.toLowerCase().includes(search.toLowerCase())
-                )}
-                newitem={newitem}
-                setNewitem={setNewitem}
-                search={search}
-                setSearch={setSearch}
-                fetchErr={fetchErr}
-                isLoading={isLoading}
-                submitted={submitted}
-                go={go}
-                setGo={setGo}
-                checks={checks}
-                deletes={deletes}
-              />
-            </div>
-          </>
-        )}
-      </>
+      <div className="bg-slate-300 md:rounded md:min-h-[80%] min-h-[90%] md:p-2 ">
+        <AboutApp />
+      </div>
 
       {/* Be Careful with Content div */}
       {logged === "Signed In" ? (

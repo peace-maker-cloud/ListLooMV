@@ -6,6 +6,10 @@ import dayjs from "dayjs";
 export const Todolist = () => {
   const API_URL = "https://lisloommv.onrender.com/users";
 
+  // App Introduction
+
+  const [home, setHome] = useState(true);
+
   // Listing the task
   const [lists, setLists] = useState([]);
 
@@ -30,6 +34,12 @@ export const Todolist = () => {
   const [uservalidate, setUservalidate] = useState("");
   const [passvalidate, setPassvalidate] = useState("");
   const [namevalidate, setNamevalidate] = useState("");
+
+  // for Profile visibility
+  const [visible, setVisible] = useState(false);
+  const [go, setGo] = useState("");
+
+  const [Cal, setCal] = useState("hidden");
 
   // Task values
 
@@ -413,6 +423,8 @@ export const Todolist = () => {
   return (
     <div className="mx-auto h-screen bg-gray-200 rounded-md outline-none">
       <AppUI
+        home={home}
+        setHome={setHome}
         show={show}
         setShow={setShow}
         action={action}
@@ -439,6 +451,12 @@ export const Todolist = () => {
         password={password}
         setPassword={setPassword}
         greet={greet}
+        visible={visible}
+        setVisible={setVisible}
+        go={go}
+        setGo={setGo}
+        Cal={Cal}
+        setCal={setCal}
         handleSubmit={handleSubmit}
         handleLogin={handleLogin}
         handleLogout={handleLogout}
